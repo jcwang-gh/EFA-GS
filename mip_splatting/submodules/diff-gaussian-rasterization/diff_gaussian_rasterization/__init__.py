@@ -40,7 +40,7 @@ def rasterize_gaussians(
         cov3Ds_precomp,
         raster_settings,
     )
-    
+
 class _RasterizeGaussians(torch.autograd.Function):
     @staticmethod
     def forward(
@@ -224,3 +224,4 @@ class GaussianRasterizer(nn.Module):
             cov3D_precomp,
             raster_settings, 
         )
+
