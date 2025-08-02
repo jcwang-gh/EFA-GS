@@ -4,15 +4,22 @@
 
 </p>
 
+
 <p align="center">
-We applied frequency analysis to identify the cause of floating artifacts in 3D Gaussian Splatting (3DGS) and designed a novel approach, EFA-GS, to address this issue effectively and efficiently. 
+  <a href="">
+    <img src="./assets/demofig.png" alt="Logo" width="95%">
+  </a>
+</p>
+
+<p align="center">
+We applied frequency analysis to identify the cause of floating artifacts in 3D Gaussian Splatting (3DGS) and designed a novel approach, <strong><em>Eliminating-Floating-Artifacts Gaussian Splatting</em></strong>  (EFA-GS), to address this issue. 
 </p>
 <br>
 
 # TODO List
 - [ ] ArXiv & Project Links
 - [ ] RWLQ Dataset
-- [ ] Demo Images
+- [x] Demo Images
 - [ ] Installation Guidance
 - [ ] Training Guidance
 - [ ] Hyperparameter Explanation
