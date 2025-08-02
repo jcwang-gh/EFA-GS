@@ -611,12 +611,15 @@ class GaussianModel:
         interval = self.compute_3D_interval(cameras)
         
         with torch.no_grad():
+            # depth-based strategy is used.
             # deeper gaussians, lower sampling rates, lower scaling multipliers, higher opacity multipliers
             interval_coef = self.normalize_interval(interval,'log','minmax').to(self._scaling.device)
             scaling_multiplier_coef = interval_coef * scaling_multiplier_min + (1 - interval_coef) * scaling_multiplier_max
             log_scaling_multiplier = torch.log(scaling_multiplier_coef) * training_percent_powered
             # if function scaling_inverse_activation is not logarithm anymore, then use the following code.
             # scaling_changes = self.scaling_inverse_activation(scaling_multiplier * self.get_scaling) - self._scaling
+            
+            #diffscale is an indicator denoting whether scale-based strategy is used or not.
             if diffscale:
                 coef_of_enlarge = torch.ones_like(enlarged_scaling_changes)
                 enlarged_sorted_indices = torch.sort(self._scaling[enlarged_mask], dim=1, descending=False)[1]

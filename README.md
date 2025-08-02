@@ -18,10 +18,83 @@ We applied frequency analysis to identify the cause of floating artifacts in 3D 
 
 # TODO List
 - [ ] ArXiv & Project Links
-- [ ] RWLQ Dataset
-- [x] Demo Images
-- [ ] Installation Guidance
-- [ ] Training Guidance
-- [ ] Hyperparameter Explanation
-- [ ] Acknowledgement
+- [ ] RWLQ Dataset and Other Initializations
 - [ ] Citation
+
+# Installation Guidance
+
+We use anaconda to manage virtual enviroments, so make sure that you've installed anaconda (or miniconda) before installing this repository. The installation guidance is below:
+
+1. Clone this repository;
+2. For EFA-GS(3DGS), the installation commands are list below:
+```Bash
+cd 3DGS
+conda env create --file environment.yml
+```
+3. For EFA-GS(Mip), the installation commands are listed below:
+```Bash
+cd Mip-splatting
+conda create -y -n EFA-Mip python=3.11
+conda activate EFA-Mip
+conda install cudatoolkit-dev=11.7 -c conda-forge
+pip install -r requirements.txt
+```
+
+# Datasets
+
+We used 3 datasets to evaluate EFA-GS in the paper. They are:
+1. Real-World-Low-Quality Dataset (RWLQ, not released yet);
+2. [Mip-NeRF 360 Dataset](https://jonbarron.info/mipnerf360/);
+3. [TanksandTemples](https://www.tanksandtemples.org/download/).
+
+We put these datasets in a directory `data`:
+```Bash
+data
+|---RWLQ
+|   |---astronaut
+|   |---...
+|---360v2
+|   |---bicycle
+|   |---...
+|---TanksandTemples
+|   |---advanced
+|   |   |---Auditorium
+|   |   |---...
+|   |---intermediate
+|   |   |---Family
+|   |   |---...
+|   |---trainingdata
+|   |   |---Barn
+|   |   |---...
+```
+We use colmap to process `RWLQ` and `TanksandTemples` in order to get SfM initializations.
+
+Before training, we need to set up symbolic links:
+```Bash
+ln -s absolute/path/to/data ./3DGS/data
+ln -s absolute/path/to/data ./Mip-Splatting/data
+```
+
+# Training & Evaluation
+
+```Bash
+# For EFA-GS(3DGS)
+conda activate EFA-3DGS
+cd absolute/path/to/EFA-GS/3DGS
+# training and evaluation on Mip-NeRF 360 dataset
+python scripts/run_mipnerf360.py
+# training and evaluation on TanksandTemples dataset
+python scripts/run_tat.py
+
+# For EFA-GS(Mip)
+conda activate EFA-Mip
+cd absolute/path/to/EFA-GS/Mip-Splatting
+# training and evaluation on Mip-NeRF 360 dataset
+python scripts/run_mipnerf360.py
+# training and evaluation on TanksandTemples dataset
+python scripts/run_tat.py
+```
+
+# Acknowledgements
+
+This project is built upon [3DGS](https://github.com/graphdeco-inria/gaussian-splatting) and [Mip-Splatting](https://github.com/autonomousvision/mip-splatting). Please follow the license of 3DGS. We thank all the authors for their great work and repos.

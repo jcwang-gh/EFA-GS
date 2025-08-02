@@ -1,0 +1,19 @@
+name: EFA-3DGS
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+  - nvidia
+dependencies:
+  - plyfile
+  - python=3.11
+  - pip=23.3.2
+  - pytorch=2.0.1
+  - pytorch-cuda=11.7
+  - torchaudio=2.0.2
+  - torchvision=0.15.2
+  - tqdm
+  - pip:
+    - GPUtil==1.4.0
+    - submodules/diff-gaussian-rasterization
+    - submodules/simple-knn
