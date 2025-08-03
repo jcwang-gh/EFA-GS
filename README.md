@@ -7,12 +7,18 @@
 
 <p align="center">
   <a href="">
-    <img src="./assets/demofig.png" alt="Logo" width="95%">
+    <img src="./assets/demofig.png" alt="Demo" width="95%">
   </a>
 </p>
 
 <p align="center">
-We applied frequency analysis to identify the cause of floating artifacts in 3D Gaussian Splatting (3DGS) and designed a novel approach, <strong><em>Eliminating-Floating-Artifacts Gaussian Splatting</em></strong>  (EFA-GS), to address this issue. 
+  <a href="">
+    <img src="./assets/figofedit.png" alt="3D-Editing Results" width="95%">
+  </a>
+</p>
+
+<p align="center">
+We applied frequency analysis to identify the cause of floating artifacts in 3D Gaussian Splatting (3DGS) and designed a novel approach, <strong><em>Eliminating-Floating-Artifacts Gaussian Splatting</em></strong>  (EFA-GS), to address this issue effectively and efficiently. EFA-GS achieved good performance on multiple 3DGS-based reconstruction/generation tasks. 
 </p>
 <br>
 
@@ -43,9 +49,9 @@ pip install -r requirements.txt
 # Datasets
 
 We used 3 datasets to evaluate EFA-GS in the paper. They are:
-1. Real-World-Low-Quality Dataset (RWLQ, not released yet);
-2. [Mip-NeRF 360 Dataset](https://jonbarron.info/mipnerf360/);
-3. [TanksandTemples](https://www.tanksandtemples.org/download/).
+1. *Real-World-Low-Quality* Dataset (*RWLQ*, not released yet);
+2. [*Mip-NeRF 360* Dataset](https://jonbarron.info/mipnerf360/);
+3. [*TanksandTemples* Dataset](https://www.tanksandtemples.org/download/).
 
 We put these datasets in a directory `data`:
 ```Bash
@@ -67,7 +73,7 @@ data
 |   |   |---Barn
 |   |   |---...
 ```
-We use colmap to process `RWLQ` and `TanksandTemples` in order to get SfM initializations.
+We use colmap to [process](https://github.com/graphdeco-inria/gaussian-splatting?tab=readme-ov-file#processing-your-own-scenes) `RWLQ` and `TanksandTemples` in order to get SfM initializations.
 
 Before training, we need to set up symbolic links:
 ```Bash
@@ -93,6 +99,23 @@ cd absolute/path/to/EFA-GS/Mip-Splatting
 python scripts/run_mipnerf360.py
 # training and evaluation on TanksandTemples dataset
 python scripts/run_tat.py
+```
+
+# Hyperparameter Explanation
+
+EFA-GS employs several hyperparameters that significantly influence training outcomes. However, a fixed set of hyperparameters cannot universally adapt to diverse scenarios or tasks. In our paper, maintaining consistent hyperparameters across multiple datasets serves primarily to demonstrate the inherent robustness of EFA-GS. For optimal performance in practical applications, careful tuning of these hyperparameters is essential.
+
+Below, we provide a concise overview of these key hyperparameters and their roles in the training process.
+
+```
+init_scaling_multiplier_max: the maximum initial value of expanding factors in LFCF algorithm.
+last_scaling_multiplier_max: the maximum value of expanding factors in LFCF algorithm at last.
+init_scaling_multiplier_min: the minimum initial value of expanding factors in LFCF algorithm.
+pow: to control the decay rate of expanding factors during training.
+splitting_ub: upper bound of splitting probability thereshold. It is to reduce the number of splitting Gaussians during training.
+splitting_lb: lower bound of splitting probability thereshold. It is to reduce the number of splitting Gaussians during training.
+interval_times: It determines the interval between 2 adjacent LFCF operations. `interval_times=1` means that the original densification operation is totally replaced by LFCF operation during training.
+diffscale: an indicator denoting whether to use the scale-based strategy.
 ```
 
 # Acknowledgements
