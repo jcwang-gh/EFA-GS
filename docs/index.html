@@ -55,10 +55,6 @@
         packages: ['base','ams'],
         inlineMath: [['$', '$'], ['\\(', '\\)']]
       },
-      startup: {
-        // 由我们手动触发排版
-        typeset: false
-      }
     };
   </script>
   <!-- 正式加载 MathJax -->
@@ -66,9 +62,9 @@
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
   <!-- 加载完毕后渲染所有（包括被隐藏的） -->
-  <script>
+  <!-- <script>
     MathJax.startup.promise.then(() => MathJax.typesetPromise());
-  </script>
+  </script> -->
 </head>
 <body>
 
@@ -330,27 +326,6 @@
     </div>
   </div>
 </footer>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // 初始化 carousel（选用你需要的配置）
-    const carousels = bulmaCarousel.attach('#results-carousel', {
-      slidesToScroll: 1,
-      slidesToShow: 1,
-      loop: false,
-      // …其他 bulma-carousel 支持的参数
-    });
-
-    // 给每个实例绑定 'show' 事件
-    carousels.forEach(carousel => {
-      carousel.on('show', () => {
-        // 切换完成后重新排版 MathJax
-        MathJax.typesetPromise()
-          .catch(err => console.error('MathJax 排版失败：', err));
-      });
-    });
-  });
-</script>
 
 </body>
 </html>
