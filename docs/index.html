@@ -327,6 +327,15 @@
   </div>
 </footer>
 
+
+<script>
+  window.addEventListener('load', () => {
+    if (window.MathJax && MathJax.typesetPromise) {
+      MathJax.typesetPromise();
+    }
+  });
+</script>
+
 </body>
 </html>
 <!-- Statcounter tracking code -->
@@ -334,7 +343,3 @@
 <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
 
     <!-- End of Statcounter Code --
-
-</body>
-
-  </html>
