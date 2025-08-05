@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>Low-Frequency First: Eliminating Floating Artifacts in 3D Gaussian Splatting</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.svg">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <!-- <script src="static/js/bulma-carousel.js"></script> -->
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+  <script>
+    window.MathJax = {
+      options: {
+        // 默认跳过 script,noscript,textarea,pre，这里保留
+        // 不要再跳过带 style 隐藏的元素
+        skipHtmlTags: ['script','noscript','textarea','pre']
+      },
+      tex: {
+        packages: ['base','ams'],
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      startup: {
+        // 由我们手动触发排版
+        typeset: false
+      }
+    };
+  </script>
+  <!-- 正式加载 MathJax -->
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <!-- 加载完毕后渲染所有（包括被隐藏的） -->
+  <script>
+    MathJax.startup.promise.then(() => MathJax.typesetPromise());
+  </script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Low-Frequency First: Eliminating Floating Artifacts in 3D Gaussian Splatting</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">Jianchao Wang</a>,</span>
+                <span class="author-block">
+                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Peng Zhou</a>,</span>
+                  <span class="author-block">
+                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Cen Li</a>,</span>
+                  <span class="author-block">
+                    <a href="FORTH AUTHOR PERSONAL LINK" target="_blank">Rong Quan</a>,</span>
+                  <span class="author-block">
+                    <a href="FIFTH AUTHOR PERSONAL LINK" target="_blank">Jie Qin</a>
+                  </span>
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block">Nanjing University of Aeronautics and Astronautics<br></span>
+                    <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2508.02493" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                  </a>
+                </span>
+
+                         <!-- Arxiv PDF link -->
+                      <span class="link-block">
+                        <a href="https://arxiv.org/pdf/2508.02493" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+                    <!-- Supplementary PDF link -->
+                    <!-- <span class="link-block">
+                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Supplementary</span>
+                    </a>
+                  </span> -->
+
+                  <!-- Github link -->
+                  <span class="link-block">
+                    <a href="https://github.com/jcwang-gh/EFA-GS" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                </a>
+              </span>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Teaser image-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- <video poster="" id="tree" autoplay controls muted loop height="100%"> -->
+        <!-- Your video here -->
+        <!-- <source src="static/videos/banner_video.mp4" -->
+        <!-- type="video/mp4"> -->
+      <!-- </video> -->
+      <div class="teaser-image">
+        <img src="static/images/demofig.png" alt="Teaser Banner" style="width: 100%;height: auto;">
+        <img src="static/images/figofedit.png" alt="Teaser Banner" style="width: 100%;height: auto;">
+      </div>
+      <h2 class="subtitle has-text-centered">
+          Illustration of our EFA-GS in 3D Reconstruction/Editing tasks. Ordinary 3DGS frameworks (such as Mip-splatting and GaussianEditor) sometimes have a frequency bias in the training process and low-quality initialization exacerbate this phenomenon, resulting in more over-shrunk Gaussians. Our EFA-GS successfully mitigate this issue and improve the performance by selectively expanding Gaussians.
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- End teaser image -->
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            3D Gaussian Splatting (3DGS) is a powerful and computationally efficient representation for 3D reconstruction. 
+            Despite its strengths, 3DGS often produces floating artifacts, which are erroneous structures detached from the actual geometry and significantly degrade visual fidelity. 
+            The underlying mechanisms causing these artifacts, particularly in low-quality initialization scenarios, have not been fully explored. 
+            In this paper, we investigate the origins of floating artifacts from a frequency-domain perspective and identify under-optimized Gaussians as the primary source. 
+            Based on our analysis, we propose Eliminating-Floating-Artifacts Gaussian Splatting (EFA-GS), which selectively expands under-optimized Gaussians to prioritize accurate low-frequency learning. 
+            Additionally, we introduce complementary depth-based and scale-based strategies to dynamically refine Gaussian expansion, 
+            effectively mitigating detail erosion. Extensive experiments on both synthetic and real-world datasets demonstrate that EFA-GS substantially reduces floating artifacts while preserving high-frequency details,
+            achieving an improvement of 1.68 dB in PSNR over baseline method on our RWLQ dataset. Furthermore, we validate theeffectiveness of our approach in downstream 3D editing tasks.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Performance</h2>
+          <div class="table-container">
+            \[
+              \begin{array}{c|ccc}
+                \hline
+                    & \textrm{PSNR}\uparrow & \textrm{SSIM}\uparrow & \textrm{LPIPS}\downarrow \\
+                \hline
+                \textrm{2DGS} & \textbf{28.00} & \textbf{0.95} & 0.16  \\
+                \textrm{GOF} & 27.92 & 0.95 & \textbf{0.15}  \\
+                \textrm{eRank-GS} & 23.16 & 0.91 & 0.18  \\
+                \hline
+                \textrm{Vanilla 3DGS} & 27.71 & 0.95 & 0.15  \\
+                \textrm{EFA-GS(3DGS)} & \textbf{28.70} & \textbf{0.95} & \textbf{0.14} \\
+                \hline
+                \textrm{Mip-splatting} & 26.67 & 0.94 & 0.16  \\
+                \textrm{EFA-GS(Mip, default)}  & 28.35 & 0.95 & 0.15  \\
+                \hline
+              \end{array}
+            \]
+          </div>
+          <h2 class="subtitle has-text-centered">
+            Reconstruction results on RWLQ dataset.
+          </h2>
+          <div class="table-container">
+            \[
+              \begin{array}{c|ccc}
+                  \hline
+                                                & \textrm{PSNR}\uparrow & \textrm{SSIM}\uparrow & \textrm{LPIPS}\downarrow \\
+                  \hline
+                  \textrm{2DGS}                 & 27.00 & 0.81 & 0.24  \\
+                  \textrm{GOF}                  & 27.33 & 0.82 & 0.20  \\
+                  \textrm{eRank-GS}             & 27.69 & 0.84 & 0.20  \\
+                  \hline
+                  \textrm{Vanilla 3DGS}         & 27.58 & 0.82 & 0.21  \\
+                  \textrm{EFA-GS(3DGS)}         & 27.52 & 0.82 & 0.21  \\
+                  \hline
+                  \textrm{Mip-splatting}        & \textbf{27.92} & \textbf{0.84} & \textbf{0.18}  \\
+                  \textrm{EFA-GS(Mip, default)} & \textbf{27.94} & \textbf{0.84} & \textbf{0.18}  \\
+                  \hline
+              \end{array}
+            \]
+          </div>
+          <h2 class="subtitle has-text-centered">
+            Reconstruction results on Mip-NeRF 360 dataset.  There are not many floating artifacts in reconstruction results of Mip-NeRF 360 dataset, so our EFA-GS does not bring significant improvement on this dataset.
+          </h2>
+          <div class="table-container">
+            \[
+              \begin{array}{c|ccc|ccc}
+                  \hline
+                                                & \textrm{PSNR}\uparrow & \textrm{SSIM}\uparrow & \textrm{LPIPS}\downarrow\\
+                  \hline
+                  \textrm{2DGS}                 & 21.17 & 0.78 & 0.32  \\
+                  \textrm{GOF}                  & 19.80 & 0.77 & 0.30  \\
+                  \textrm{eRank-GS}             & 18.43 & 0.72 & 0.37  \\
+                  \hline
+                  \textrm{Vanilla 3DGS}         & \textbf{21.51} & \textbf{0.79} & \textbf{0.28}  \\
+                  \textrm{EFA-GS(3DGS)}         & \textbf{21.69} & \textbf{0.80} & \textbf{0.28}  \\
+                  \hline
+                  \textrm{Mip-splatting}        & 20.63 & 0.78 & 0.29  \\
+                  \textrm{EFA-GS(Mip, default)} & 21.31 & 0.79 & 0.28  \\
+                  \hline
+              \end{array}
+            \]
+          </div>
+          <h2 class="subtitle has-text-centered">
+            Reconstruction results on TanksandTemples dataset (Normal initialization).
+          </h2>
+          <div class="table-container">
+            \[
+              \begin{array}{c|ccc|ccc}
+                  \hline
+                                                & \textrm{PSNR}\uparrow & \textrm{SSIM}\uparrow & \textrm{LPIPS}\downarrow\\
+                  \hline
+                  \textrm{2DGS}                 & 18.98 & \textbf{0.72} & 0.41  \\
+                  \textrm{GOF}                  & 17.84 & 0.67 & 0.39  \\
+                  \textrm{eRank-GS}             & 16.37 & 0.62 & 0.45  \\
+                  \hline
+                  \textrm{Vanilla 3DGS}         & \textbf{19.11} & 0.69 & \textbf{0.37}  \\
+                  \textrm{EFA-GS(3DGS)}         & \textbf{19.45} & 0.69 & \textbf{0.36}  \\
+                  \hline
+                  \textrm{Mip-splatting}        & 18.15 & 0.67 & 0.39  \\
+                  \textrm{EFA-GS(Mip, default)} & 19.07 & 0.69 & 0.37  \\
+                  \hline
+              \end{array}
+            \]
+          </div>
+          <h2 class="subtitle has-text-centered">
+            Reconstruction results on TanksandTemples dataset (Low Quality initialization).
+          </h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--BibTex citation -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@misc{wang2025lowfrequencyfirsteliminatingfloating,
+      title={Low-Frequency First: Eliminating Floating Artifacts in 3D Gaussian Splatting}, 
+      author={Jianchao Wang and Peng Zhou and Cen Li and Rong Quan and Jie Qin},
+      year={2025},
+      eprint={2508.02493},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+    }</code></pre>
+  </div>
+</section>
+<!--End BibTex citation -->
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 初始化 carousel（选用你需要的配置）
+    const carousels = bulmaCarousel.attach('#results-carousel', {
+      slidesToScroll: 1,
+      slidesToShow: 1,
+      loop: false,
+      // …其他 bulma-carousel 支持的参数
+    });
+
+    // 给每个实例绑定 'show' 事件
+    carousels.forEach(carousel => {
+      carousel.on('show', () => {
+        // 切换完成后重新排版 MathJax
+        MathJax.typesetPromise()
+          .catch(err => console.error('MathJax 排版失败：', err));
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code --
+
+</body>
+
+  </html>

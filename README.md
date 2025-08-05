@@ -1,8 +1,10 @@
-<p align="center">
+<div align="center">
 
   <h1 align="center">Low-Frequency First: Eliminating Floating Artifacts in 3D Gaussian Splatting</h1>
 
-</p>
+  <a href="https://arxiv.org/abs/2508.02493"><img src="https://img.shields.io/badge/arXiv-2508.02493-b31b1b" alt="arXiv"></a>
+  <a href="https://jcwang-gh.github.io/EFA-GS"><img src="https://img.shields.io/badge/Project_Page-EFA--GS-green" alt="Project Page"></a>
+</div>
 
 
 <p align="center">
@@ -23,9 +25,9 @@ We applied frequency analysis to identify the cause of floating artifacts in 3D 
 <br>
 
 # TODO List
-- [ ] ArXiv & Project Links
+- [x] Citation
+- [x] ArXiv & Project Links
 - [ ] RWLQ Dataset and Other Initializations
-- [ ] Citation
 
 # Installation Guidance
 
@@ -81,6 +83,28 @@ ln -s absolute/path/to/data ./3DGS/data
 ln -s absolute/path/to/data ./Mip-Splatting/data
 ```
 
+To get Low-quality Initializations, you need to replace
+```Python
+# Normal Initialization
+img_undist_cmd = (colmap_command + " image_undistorter \
+    --image_path " + args.source_path + "/input \
+    --input_path " + args.source_path + "/distorted/sparse/0 \
+    --output_path " + args.source_path + "\
+    --output_type COLMAP")
+```
+with
+```Python
+# Low-Quality Initialization
+sparse_sub_dirs = os.listdir(args.source_path + "/distorted/sparse")
+final_sparse_sub_dir = str(max([int(i) for i in sparse_sub_dirs]))
+img_undist_cmd = (colmap_command + " image_undistorter \
+    --image_path " + args.source_path + "/input \
+    --input_path " + args.source_path + "/distorted/sparse/" + final_sparse_sub_dir + " \
+    --output_path " + args.source_path + " \
+    --output_type COLMAP")
+```
+in `convert.py`.
+
 # Training & Evaluation
 
 ```Bash
@@ -121,3 +145,19 @@ diffscale: an indicator denoting whether to use the scale-based strategy.
 # Acknowledgements
 
 This project is built upon [3DGS](https://github.com/graphdeco-inria/gaussian-splatting) and [Mip-Splatting](https://github.com/autonomousvision/mip-splatting). Please follow the license of 3DGS. We thank all the authors for their great work and repos.
+
+# Citation
+
+If you find our work helpful, eel free to give us a star ⭐ or cite us using:
+
+```
+@misc{wang2025lowfrequencyfirsteliminatingfloating,
+      title={Low-Frequency First: Eliminating Floating Artifacts in 3D Gaussian Splatting}, 
+      author={Jianchao Wang and Peng Zhou and Cen Li and Rong Quan and Jie Qin},
+      year={2025},
+      eprint={2508.02493},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2508.02493}, 
+}
+```
