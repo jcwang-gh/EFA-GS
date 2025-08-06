@@ -148,7 +148,7 @@ This project is built upon [3DGS](https://github.com/graphdeco-inria/gaussian-sp
 
 # Citation
 
-If you find our work helpful, eel free to give us a star ⭐ or cite us using:
+If you find our work helpful, feel free to give us a star ⭐ or cite us using:
 
 ```
 @misc{wang2025lowfrequencyfirsteliminatingfloating,
