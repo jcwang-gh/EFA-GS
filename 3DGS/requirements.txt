@@ -1,14 +1,10 @@
 GPUtil==1.4.0
-numpy==1.26.4
-open3d==0.18.0
 opencv_python==4.10.0.84
-Pillow==11.3.0
 plyfile==1.1.2
-scipy==1.16.1
 setuptools==75.1.0
+numpy==1.26.4
 torch==2.0.1+cu117
 torchvision==0.15.2+cu117
 tqdm==4.66.5
-lpips==0.1.4
 submodules/diff-gaussian-rasterization
 submodules/simple-knn

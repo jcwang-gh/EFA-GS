@@ -37,7 +37,10 @@ We use anaconda to manage virtual enviroments, so make sure that you've installe
 2. For EFA-GS(3DGS), the installation commands are list below:
 ```Bash
 cd 3DGS
-conda env create --file environment.yml
+conda create -y -n EFA-3DGS python=3.11
+conda activate EFA-3DGS
+conda install cudatoolkit-dev=11.7 -c conda-forge
+pip install -r requirements.txt
 ```
 3. For EFA-GS(Mip), the installation commands are listed below:
 ```Bash
