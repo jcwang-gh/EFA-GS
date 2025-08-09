@@ -82,6 +82,25 @@ Before training, we need to set up symbolic links:
 ln -s absolute/path/to/data ./3DGS/data
 ln -s absolute/path/to/data ./Mip-Splatting/data
 ```
+# Initialization Options
+
+This implementation provides two initialization modes:
+
+**Normal Initialization (default)**
+
+    1. Uses the same settings as the original 3D Gaussian Splatting paper.
+
+    2. Recommended for all standard use cases.
+
+**Low-Quality Initialization**
+
+    1. Intentionally generates floating artifacts for experimental comparison.
+
+    2. Should only be used when reproducing the low-quality results in our paper.
+
+    3. Not recommended for normal applications!
+
+⚠️ **Important Note: Please use Normal Initialization unless you specifically need to reproduce our comparative low-quality results.**
 
 To get Low-quality Initializations, you need to replace
 ```Python
