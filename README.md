@@ -27,7 +27,7 @@ We applied frequency analysis to identify the cause of floating artifacts in 3D 
 # TODO List
 - [x] Citation
 - [x] ArXiv & Project Links
-- [ ] RWLQ Dataset and Other Initializations
+- [ ] Cleaning up codes & datasets
 
 # Installation Guidance
 
