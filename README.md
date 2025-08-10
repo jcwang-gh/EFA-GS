@@ -25,9 +25,7 @@ We applied frequency analysis to identify the cause of floating artifacts in 3D 
 <br>
 
 # TODO List
-- [x] Citation
-- [x] ArXiv & Project Links
-- [ ] Cleaning up codes & datasets
+- [ ] Datasets
 
 # Installation Guidance
 
@@ -163,6 +161,13 @@ splitting_lb: lower bound of splitting probability thereshold. It is to reduce t
 interval_times: It determines the interval between 2 adjacent LFCF operations. `interval_times=1` means that the original densification operation is totally replaced by LFCF operation during training.
 diffscale: an indicator denoting whether to use the scale-based strategy.
 ```
+
+# FAQ
+***Q1.*** **Why are the reconstruction results on my datasets poor?**
+
+***A1.*** Check whether Low-Quality Initialization is used or not. If Low-Quality Initialization is used, switch to Normal Initialization to get normal colmap results and give it another try.
+
+
 
 # Acknowledgements
 
