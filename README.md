@@ -26,6 +26,7 @@ We applied frequency analysis to identify the cause of floating artifacts in 3D 
 
 # TODO List
 - [ ] Datasets
+- [ ] Tolerance-based comparison
 
 # Installation Guidance
 
@@ -161,6 +162,35 @@ splitting_lb: lower bound of splitting probability thereshold. It is to reduce t
 interval_times: It determines the interval between 2 adjacent LFCF operations. `interval_times=1` means that the original densification operation is totally replaced by LFCF operation during training.
 diffscale: an indicator denoting whether to use the scale-based strategy.
 ```
+# Impact of Hardware on Results
+
+We find that different hardware devices can lead to variations in the reconstruction quality of EFA-GS. All experiments presented in the paper were conducted using 1 NVIDIA A100 GPU. To further investigate the influence of hardware on reconstruction performance, we additionally executed the implementation on 1 NVIDIA V100 GPU.
+
+Here are the reconstruction results on Mip-NeRF360 dataset:
+
+|               | A100  |      |       | V100  |      |       |
+|---------------|-------|------|-------|-------|------|-------|
+|               | PSNR  | SSIM | LPIPS | PSNR  | SSIM | LPIPS |
+| Vanilla 3DGS  | 27.58 | 0.82 | 0.21  | 27.55 | 0.82 | 0.21  |
+| EFA-GS(3DGS)  | 27.52 | 0.82 | 0.21  | 27.49 | 0.82 | 0.21  |
+| Mip-Splatting | 27.92 | 0.84 | 0.18  | 27.89 | 0.84 | 0.18  |
+| EFA-GS(Mip)   | 27.94 | 0.84 | 0.18  | 27.87 | 0.84 | 0.18  |
+
+Here are the reconstruction results on TanksandTemples dataset:
+
+|               | A100  |      |       | V100  |      |       |
+|---------------|-------|------|-------|-------|------|-------|
+|               | PSNR  | SSIM | LPIPS | PSNR  | SSIM | LPIPS |
+| Vanilla 3DGS  | 21.51 | 0.79 | 0.28  | 21.50 | 0.79 | 0.28  |
+| EFA-GS(3DGS)  | 21.69 | 0.80 | 0.28  | 21.67 | 0.80 | 0.28  |
+| Mip-Splatting | 20.63 | 0.78 | 0.29  | 20.56 | 0.77 | 0.29  |
+| EFA-GS(Mip)   | 21.31 | 0.79 | 0.28  | 21.25 | 0.79 | 0.28  |
+
+ChatGPT gives us an explanation, which basically means the strict comparison in our code introduce numerical differences:
+
+> Different GPU architectures (e.g., A100 vs. V100) can introduce slight numerical differences in floating-point computations due to factors like fused multiply-add implementation, Tensor Core behavior, and non-deterministic PyTorch operators. When gradient values are compared strictly (e.g., grad > prev_grad), even tiny variations (~1e-6) can lead to different execution paths and thus different results across devices.
+
+We are now trying to solve this issue by using a tolerance-based comparison. 
 
 # FAQ
 ***Q1.*** **Why are the reconstruction results on my datasets poor?**
