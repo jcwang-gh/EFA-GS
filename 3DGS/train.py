@@ -37,7 +37,7 @@ def calculate_training_percent_powered(iter, min_densify_iter, max_densify_iter,
     pow_di = exp(log(di)*pow) * (1 - lower_bound) + lower_bound
     return pow_di
 
-def training(dataset, opt, pipe, testing_iterations, saving_iterations, checkpoint_iterations, checkpoint, debug_from, init_scaling_multiplier_max, last_scaling_multiplier_max, init_scaling_multiplier_min, pow, splitting_ub, splitting_lb, interval_times, diffscale):
+def training(dataset, opt, pipe, testing_iterations, saving_iterations, checkpoint_iterations, checkpoint, debug_from, init_scaling_multiplier_max, last_scaling_multiplier_max, init_scaling_multiplier_min, pow, splitting_ub, splitting_lb, interval_times, tolerance, diffscale):
     first_iter = 0
     tb_writer = prepare_output_and_logger(dataset)
     gaussians = GaussianModel(dataset.sh_degree)
@@ -137,7 +137,7 @@ def training(dataset, opt, pipe, testing_iterations, saving_iterations, checkpoi
                     training_percent_powered = calculate_training_percent_powered(iteration, opt.densify_from_iter, opt.densify_until_iter, pow, percent_lb)
                     # More training, lower splitting_lb
                     splitting_lb = 1 - (iteration - opt.densify_from_iter) / (opt.densify_until_iter - opt.densify_from_iter)
-                    gaussians.densify_and_prune_lff(opt.densify_grad_threshold, 0.005, scene.cameras_extent, size_threshold, trainCameras, scaling_multiplier_max=init_scaling_multiplier_max, scaling_multiplier_min=init_scaling_multiplier_min, training_percent_powered=training_percent_powered, splitting_ub=splitting_ub, splitting_lb=splitting_lb, islff=(iteration%(interval_times*opt.densification_interval)==0), diffscale=diffscale)
+                    gaussians.densify_and_prune_lff(opt.densify_grad_threshold, 0.005, scene.cameras_extent, size_threshold, trainCameras, scaling_multiplier_max=init_scaling_multiplier_max, scaling_multiplier_min=init_scaling_multiplier_min, training_percent_powered=training_percent_powered, splitting_ub=splitting_ub, splitting_lb=splitting_lb, islff=(iteration%(interval_times*opt.densification_interval)==0), tolerance=tolerance, diffscale=diffscale)
                 
                 if iteration % opt.opacity_reset_interval == 0 or (dataset.white_background and iteration == opt.densify_from_iter):
                     gaussians.reset_opacity()
@@ -235,6 +235,7 @@ if __name__ == "__main__":
     parser.add_argument("--splitting_ub", type=float, default=1.0)
     parser.add_argument("--splitting_lb", type=float, default=1.0)
     parser.add_argument("--interval_times", type=int, default=1)
+    parser.add_argument("--tolerance", type=float, default=1e-5)
     parser.add_argument("--diffscale", type=lambda x:(str(x).lower() in ['true','1', 'yes']),default=False)
 
     args = parser.parse_args(sys.argv[1:])
@@ -250,7 +251,7 @@ if __name__ == "__main__":
     torch.autograd.set_detect_anomaly(args.detect_anomaly)
     last_scaling_multiplier_max = args.last_scaling_multiplier_max
     # last_scaling_multiplier_max = max(args.last_scaling_multiplier_max, args.init_scaling_multiplier_min)
-    training(lp.extract(args), op.extract(args), pp.extract(args), args.test_iterations, args.save_iterations, args.checkpoint_iterations, args.start_checkpoint, args.debug_from, args.init_scaling_multiplier_max, last_scaling_multiplier_max, args.init_scaling_multiplier_min, args.pow, args.splitting_ub, args.splitting_lb, args.interval_times, args.diffscale)
+    training(lp.extract(args), op.extract(args), pp.extract(args), args.test_iterations, args.save_iterations, args.checkpoint_iterations, args.start_checkpoint, args.debug_from, args.init_scaling_multiplier_max, last_scaling_multiplier_max, args.init_scaling_multiplier_min, args.pow, args.splitting_ub, args.splitting_lb, args.interval_times, args.tolerance, args.diffscale)
 
     # All done
     print("\nTraining complete.")

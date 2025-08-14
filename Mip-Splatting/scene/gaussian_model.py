@@ -755,7 +755,7 @@ class GaussianModel:
         self.prev_lff_xyz_grad = self.prev_lff_xyz_grad[valid_points_mask]
         self.prev_lff_xyz_grad_abs = self.prev_lff_xyz_grad_abs[valid_points_mask]
 
-    def densify_lff(self, grads, grad_threshold, grads_abs, grad_abs_threshold, cameras, N=1, scaling_multiplier_max=1.0, scaling_multiplier_min=1.0, training_percent_powered=0.0, splitting_ub=1.0, splitting_lb=0.5, diffscale=True):
+    def densify_lff(self, grads, grad_threshold, grads_abs, grad_abs_threshold, cameras, N=1, scaling_multiplier_max=1.0, scaling_multiplier_min=1.0, training_percent_powered=0.0, splitting_ub=1.0, splitting_lb=0.5, tolerance = 1e-5, diffscale=True):
         assert scaling_multiplier_max >= 1.0, f"{scaling_multiplier_max=} is less than 1.0."
         assert scaling_multiplier_min >= 1.0, f"{scaling_multiplier_min=} is less than 1.0."
         assert training_percent_powered <= 1.0 and training_percent_powered >= 0, f"{training_percent_powered} is not in [0,1]."
@@ -771,8 +771,9 @@ class GaussianModel:
         enlarged_mask = torch.logical_and(torch.logical_not(prev_selected_pts_mask), selected_pts_mask)
         splitted_mask = torch.zeros_like(enlarged_mask, dtype=torch.bool)
         # processing intersection and difference of selected_pts_mask and prev_selected_pts_mask
-        whether_decent = torch.where(torch.norm(grads[intersect_selected_pts_mask], dim=-1) <= torch.norm(self.prev_lff_xyz_grad[intersect_selected_pts_mask], dim=-1), True, False)
-        whether_decent_abs = torch.where(torch.norm(grads_abs[intersect_selected_pts_mask], dim=-1) <= torch.norm(self.prev_lff_xyz_grad_abs[intersect_selected_pts_mask], dim=-1), True, False)
+        # introducing tolerance-based comparison
+        whether_decent = torch.where(torch.norm(grads[intersect_selected_pts_mask], dim=-1) <= torch.norm(self.prev_lff_xyz_grad[intersect_selected_pts_mask] - tolerance, dim=-1), True, False)
+        whether_decent_abs = torch.where(torch.norm(grads_abs[intersect_selected_pts_mask], dim=-1) <= torch.norm(self.prev_lff_xyz_grad_abs[intersect_selected_pts_mask] - tolerance, dim=-1), True, False)
         whether_decent = torch.logical_or(whether_decent, whether_decent_abs)
 
         enlarged_mask[intersect_selected_pts_mask] = torch.logical_not(whether_decent)
@@ -846,7 +847,7 @@ class GaussianModel:
 
         return enlarged_num, splitted_num
 
-    def densify_and_prune_lff(self, max_grad, min_opacity, extent, max_screen_size, cameras, N=1, scaling_multiplier_max=1.0, scaling_multiplier_min=1.0,training_percent_powered=0.0, splitting_ub=1.0, splitting_lb=0.5, islff=False, diffscale=True):
+    def densify_and_prune_lff(self, max_grad, min_opacity, extent, max_screen_size, cameras, N=1, scaling_multiplier_max=1.0, scaling_multiplier_min=1.0,training_percent_powered=0.0, splitting_ub=1.0, splitting_lb=0.5, islff=False, tolerance=1e-5, diffscale=True):
         assert splitting_ub >= splitting_lb, f"splitting upper bound should be not smaller than splitting lower bound, whereas {splitting_ub}<{splitting_lb}."
         assert scaling_multiplier_max >= scaling_multiplier_min, f"scaling upper bound should be not smaller than scaling lower bound, whereas {scaling_multiplier_max}<{scaling_multiplier_min}."
 
@@ -864,7 +865,7 @@ class GaussianModel:
 
         before = self.get_xyz.shape[0]
         if islff:
-            enlarged_num, splitted_num = self.densify_lff(grads, max_grad, grads_abs, Q, cameras, N, scaling_multiplier_max, scaling_multiplier_min, training_percent_powered, splitting_ub, splitting_lb, diffscale)
+            enlarged_num, splitted_num = self.densify_lff(grads, max_grad, grads_abs, Q, cameras, N, scaling_multiplier_max, scaling_multiplier_min, training_percent_powered, splitting_ub, splitting_lb, tolerance, diffscale)
         else:
             self.densify_and_clone(grads, max_grad, grads_abs, Q, extent)
             clone = self._xyz.shape[0]
