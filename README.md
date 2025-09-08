@@ -24,6 +24,9 @@ We applied frequency analysis to identify the cause of floating artifacts in 3D 
 </p>
 <br>
 
+# Update (2025.09.08)
+Our work has been accepted by the 2025 International Conference on Cyberworlds (CW2025).
+
 # TODO List
 - [ ] Datasets
 - [x] Tolerance-based comparison
