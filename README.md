@@ -4,6 +4,7 @@
 
   <a href="https://arxiv.org/abs/2508.02493"><img src="https://img.shields.io/badge/arXiv-2508.02493-b31b1b" alt="arXiv"></a>
   <a href="https://jcwang-gh.github.io/EFA-GS"><img src="https://img.shields.io/badge/Project_Page-EFA--GS-green" alt="Project Page"></a>
+  <a href="https://pan.baidu.com/s/1hkx_vI170OeMQMNW4WDZNA?pwd=fp83"><img src="https://img.shields.io/badge/Dataset-RWLQ%20&%20TanksandTemples-blue" alt="Dataset"></a>
 </div>
 
 
@@ -24,11 +25,15 @@ We applied frequency analysis to identify the cause of floating artifacts in 3D 
 </p>
 <br>
 
+# Update (2025.09.18)
+
+We uploaded the RWLQ dataset and our SfM initializations of the TanksandTemples dataset to Baidu NetDisk. We also uploaded the scripts of training EFA-GS on RWLQ dataset.
+
 # Update (2025.09.08)
 Our work has been accepted by the 2025 International Conference on Cyberworlds (CW2025).
 
 # TODO List
-- [ ] Datasets
+- [x] Datasets
 - [x] Tolerance-based comparison
 
 # Installation Guidance
