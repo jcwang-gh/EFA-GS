@@ -25,6 +25,10 @@ We applied frequency analysis to identify the cause of floating artifacts in 3D 
 </p>
 <br>
 
+# Update (2025.10.16)
+
+Our paper has recieved the **Best Paper Honorable Mention** at the 24th International Conference on Cyberworlds (CW2025)!
+
 # Update (2025.09.18)
 
 We uploaded the RWLQ dataset and our SfM initializations of the TanksandTemples dataset to Baidu NetDisk. We also uploaded the scripts of training EFA-GS on RWLQ dataset.
