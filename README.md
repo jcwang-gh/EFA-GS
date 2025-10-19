@@ -7,6 +7,11 @@
   <a href="https://pan.baidu.com/s/1hkx_vI170OeMQMNW4WDZNA?pwd=fp83"><img src="https://img.shields.io/badge/Dataset-RWLQ%20&%20TanksandTemples-blue" alt="Dataset"></a>
 </div>
 
+<p align="center">
+  <a href="">
+    <img src="./assets/CW25_Award.jpg" alt="Best Paper Honorable Mention" width="95%">
+  </a>
+</p>
 
 <p align="center">
   <a href="">
