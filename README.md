@@ -9,12 +9,6 @@
 
 <p align="center">
   <a href="">
-    <img src="./assets/CW25_Award.jpg" alt="Best Paper Honorable Mention" width="95%">
-  </a>
-</p>
-
-<p align="center">
-  <a href="">
     <img src="./assets/demofig.png" alt="Demo" width="95%">
   </a>
 </p>
@@ -32,7 +26,7 @@ We applied frequency analysis to identify the cause of floating artifacts in 3D 
 
 # Update (2025.10.16)
 
-Our paper has recieved the **Best Paper Honorable Mention** at the 24th International Conference on Cyberworlds (CW2025)!
+Our paper has been awarded the **Best Paper Honorable Mention** at the 24th International Conference on Cyberworlds (CW2025)!
 
 # Update (2025.09.18)
 
